@@ -9,31 +9,24 @@ import org.junit.jupiter.api.Test;
 /**
  * The test class PropertyTest.
  *
- * @author  (your name)
+ * @author (your name)
  * @version (a version number or a date)
  */
-public class PropertyTest
-{
+public class PropertyTest {
+
+    private Property property1;
+
     /**
      * Default constructor for test class PropertyTest
      */
-    public PropertyTest()
-    {
+    public PropertyTest() {
     }
 
     @Test
-    public void testConstructor()
-    {
-        Property property1 = new Property("T3 Monte Belo", 150000.0, "property1");
+    public void testConstructor() {
         assertEquals("property1", property1.getId());
         assertEquals("T3 Monte Belo", property1.getDescription());
         assertEquals(150000.0, property1.getPrice());
-    }
-
-    @Test
-    public void testToString(){
-        Property property1 = new Property("T3 Monte Belo", 150000.0, "property1");
-        assertEquals("Descricao\t:\tT3 Monte Belo" + "\nPreco\t:\t150000.0 Euros", property1.toString());
     }
 
     /**
@@ -42,8 +35,13 @@ public class PropertyTest
      * Called before every test case method.
      */
     @BeforeEach
-    public void setUp()
-    {
+    public void setUp() {
+        property1 = new Property("T3 Monte Belo", 150000.0, "property1");
+    }
+
+    @Test
+    public void testToString() {
+        assertEquals("Descricao\t:\tT3 Monte Belo" + "\nPreco\t:\t150000.0 Euros", property1.toString());
     }
 
     /**
@@ -52,7 +50,6 @@ public class PropertyTest
      * Called after every test case method.
      */
     @AfterEach
-    public void tearDown()
-    {
+    public void tearDown() {
     }
 }

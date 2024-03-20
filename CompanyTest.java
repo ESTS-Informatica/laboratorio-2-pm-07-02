@@ -20,6 +20,7 @@ public class CompanyTest {
     private User client2;
     private User seller1;
     private User seller2;
+    Property property;
 
     public CompanyTest() {
     }
@@ -30,6 +31,21 @@ public class CompanyTest {
         assertNotNull(company.getSellers());
         assertNotNull(company.getProperties());
         assertNotNull(company.getSells());
+    }
+
+    @Test
+    public void testCreateSell() {
+        assertTrue(company.createSell(client1, seller1, property));
+    }
+
+    @Test
+    public void testCalculateSellsOfTheYear() {
+        assertEquals(3, company.calculateSellsOfTheYear(2024));
+    }
+
+    @Test
+    public void findSellerOfTheYear() {
+        assertEquals("seller1", company.findSellerOfTheYear(2024));
     }
 
     /**
@@ -43,8 +59,12 @@ public class CompanyTest {
         client2 = new User("client2", "922222222", "tochico@hotmail.com");
         seller1 = new User("seller1", "966777101", "fefe@remax.pt");
         seller2 = new User("seller2", "966777152", "roro@remax.pt");
+        property = new Property("T3 Monte Belo", 150000.0, "property1");
 
         company = new Company();
+        company.createSell(client1, seller1, property);
+        company.createSell(client1, seller1, property);
+        company.createSell(client1, seller1, property);
 
         company.registerClient(client1);
         company.registerClient(client2);
