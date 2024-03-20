@@ -17,7 +17,7 @@ import org.junit.jupiter.api.TestMethodOrder;
  * @author (your name)
  * @version (a version number or a date)
  */
-@TestMethodOrder(OrderAnnotation.class)
+
 public class CompanyTest {
     /**
      * Default constructor for test class CompanyTest
@@ -52,81 +52,84 @@ public class CompanyTest {
         assertNotNull(company.getSells());
     }
 
+    @Test
+    public void testCreateSell() {
+        assertTrue(company.createSell(client1, seller1, property1));
+    }
+
+    @Test
+    public void testCalculateSellsOfTheYear() {
+        assertEquals(3, company.calculateSellsOfTheYear(2024));
+    }
+
+    @Test
+    public void findSellerOfTheYear() {
+        assertEquals("seller1", company.findSellerOfTheYear(2024));
+    }
+
     // Clients
     @Test
-    @Order(1)
     public void testRegisterClient() {
         assertTrue(company.registerClient(client3));
     }
 
     @Test
-    @Order(2)
     public void testRegisterClients() {
         assertTrue(company.registerClient(client4));
         assertTrue(company.registerClient(client5));
     }
 
     @Test
-    @Order(3)
     public void testRegisterClientDuplicate() {
         assertFalse(company.registerClient(client1));
     }
 
     @Test
-    @Order(4)
     public void testRegisterClientNull() {
         assertFalse(company.registerClient(null));
     }
 
     // Sellers
     @Test
-    @Order(5)
     public void testRegisterSeller() {
         assertTrue(company.registerSeller(seller3));
     }
 
     @Test
-    @Order(6)
     public void testRegisterSellers() {
         assertTrue(company.registerSeller(seller4));
         assertTrue(company.registerSeller(seller5));
     }
 
     @Test
-    @Order(7)
     public void testRegisterSellerDuplicate() {
         assertFalse(company.registerSeller(seller1));
     }
 
     @Test
-    @Order(8)
     public void testRegisterSellerNull() {
         assertFalse(company.registerSeller(null));
     }
 
     // Properties
     @Test
-    @Order(9)
     public void testRegisterProperty() {
         assertTrue(company.registerProperty(property1));
     }
 
     @Test
-    @Order(10)
     public void testRegisterProperties() {
         assertTrue(company.registerProperty(property2));
         assertTrue(company.registerProperty(property3));
     }
 
     @Test
-    @Order(11)
     public void testRegisterPropertyDuplicate() {
         assertTrue(company.registerProperty(property4));
         assertFalse(company.registerProperty(property4));
     }
 
     @Test
-    @Order(12)
     public void testRegistePropertyNull() {
         assertFalse(company.registerProperty(null));
     }
@@ -156,6 +159,9 @@ public class CompanyTest {
         property4 = new Property("property4", 400000, "4");
 
         company = new Company();
+        company.createSell(client1, seller1, property1);
+        company.createSell(client1, seller1, property1);
+        company.createSell(client1, seller1, property1);
 
         company.registerClient(client1);
         company.registerClient(client2);

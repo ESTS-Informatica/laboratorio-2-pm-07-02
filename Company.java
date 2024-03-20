@@ -134,9 +134,6 @@ public class Company {
         if (client == null || seller == null || property == null) {
             return false;
         }
-        if (!clients.contains(client) || !sellers.contains(seller) || !properties.contains(property)) {
-            return false;
-        }
         Sell sell = new Sell(client, seller, property);
         return registerSell(sell);
     }
@@ -148,7 +145,13 @@ public class Company {
      * @return The total number of sells in the year.
      */
     public int calculateSellsOfTheYear(int year) {
-        return 0;
+        int sellsOfTheYear = 0;
+        for (Sell sell : sells) {
+            if (sell.getDate().getYear() == year) {
+                sellsOfTheYear++;
+            }
+        }
+        return sellsOfTheYear;
     }
 
     /**
@@ -158,7 +161,21 @@ public class Company {
      * @return The name of the seller of the year.
      */
     public String findSellerOfTheYear(int year) {
-        return "";
+        int maxSells = 0;
+        String sellerOfTheYear = "";
+        for (User seller : sellers){
+            int sellsOfTheYear = 0;
+            for (Sell sell : sells) {
+                if (sell.getDate().getYear() == year && sell.getSeller().equals(seller)) {
+                    sellsOfTheYear++;
+                }
+            }
+            if (sellsOfTheYear > maxSells) {
+                maxSells = sellsOfTheYear;
+                sellerOfTheYear = seller.getName();
+            }
+        }
+        return sellerOfTheYear;
     }
 
 }
