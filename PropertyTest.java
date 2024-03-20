@@ -1,4 +1,7 @@
 import static org.junit.jupiter.api.Assertions.*;
+
+import java.beans.Transient;
+
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -25,6 +28,12 @@ public class PropertyTest
         assertEquals("property1", property1.getId());
         assertEquals("T3 Monte Belo", property1.getDescription());
         assertEquals(150000.0, property1.getPrice());
+    }
+
+    @Test
+    public void testToString(){
+        Property property1 = new Property("T3 Monte Belo", 150000.0, "property1");
+        assertEquals("Descricao\t:\tT3 Monte Belo" + "\nPreco\t:\t150000.0 Euros", property1.toString());
     }
 
     /**
